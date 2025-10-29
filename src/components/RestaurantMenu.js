@@ -2,6 +2,8 @@ import { useEffect } from "react";
 
 const RestaurantMenu = () => {
 
+    
+
    /**  useEffect(() => {
         fetchMenu();
     }, []);
