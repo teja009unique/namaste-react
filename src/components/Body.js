@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect} from "react";
 import Shimmer from "./Shimmer";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { Link } from "react-router";
 
 const Body = () => {
 
@@ -16,13 +17,20 @@ const Body = () => {
     },[]);
 
     const fetchData = async ()=>{
-        const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.74740330841686&lng=83.23294121772051&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-       // const data = await fetch("https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api");
+     
+        const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
+        //const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.74740330841686&lng=83.23294121772051&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+       // NOT REQUIRED const data = await fetch("https://raw.githubusercontent.com/namastedev/namaste-react/refs/heads/main/swiggy-api");
         const json = await data.json();
 
         console.log(json);
-        setListOfRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
+        
+        
+
+
+        setListOfRestaurants(json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     };
 
     const OnlineStatus = useOnlineStatus();
@@ -72,7 +80,7 @@ const Body = () => {
             </div>
             <div className="res-container">
                 {filteredRestaurants.map((restaurant) => (
-                     <RestaurantCard key = {restaurant.info.id} resData = {restaurant} />
+                    <Link key = {restaurant.info.id} to = {"/restaurants/" + restaurant.info.id }> <RestaurantCard  resData = {restaurant} /> </Link>
                 ))}
             </div>
         </div>
