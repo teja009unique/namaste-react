@@ -12,7 +12,7 @@ class UserClass extends React.Component{
             }
             
          }
-         console.log(this.props.name + "Child Constructor");
+       //  console.log(this.props.name + "Child Constructor");
 
         
          
@@ -28,18 +28,18 @@ class UserClass extends React.Component{
             userInfo : json,
         })
        
-       console.log(json);
+     //  console.log(json);
 
     }
 
 
     componentDidUpdate() {
-        console.log("Component Did Update");
+      //  console.log("Component Did Update");
     }
 
 
     componentWillUnmount(){
-        console.log("Component Will Unmount");
+      //  console.log("Component Will Unmount");
     }
 
     
@@ -50,7 +50,7 @@ class UserClass extends React.Component{
         const{name,location,avatar_url} = this.state.userInfo;
         
 
-        console.log(this.props.name + "Child Render");
+      //  console.log(this.props.name + "Child Render");
        
         return(
             <div className="user-card">
